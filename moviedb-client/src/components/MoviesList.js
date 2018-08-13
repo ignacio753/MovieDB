@@ -9,7 +9,7 @@ class MoviesList extends Component {
         super(props)
         this.state = {
             movies: [],
-            editingMovieId: null   
+            editingMovieId: null,
         }
         this.addNewMovie = this.addNewMovie.bind(this)
         this.removeMovie = this.removeMovie.bind(this)
@@ -29,7 +29,14 @@ class MoviesList extends Component {
     }
 
     addNewMovie(title, description) {
-        axios.post( 'api/v1/movies', { movie: {title, description} })
+        var config = {
+            headers: {}
+        }
+        if (localStorage.getItem("jwt") !== undefined) {
+            config['headers']['Authorization'] = 'Bearer ' + localStorage.getItem("jwt")
+        }
+        let data = { movie: {title, description}}
+        axios.post( 'api/v1/movies', data, config)
         .then(response => {
             console.log(response)
             const movies = [ ...this.state.movies, response.data ]
@@ -41,7 +48,21 @@ class MoviesList extends Component {
     }
 
     removeMovie(id) {
-        axios.delete( '/api/v1/movies/' + id )
+        var config = {
+            headers: {}
+        }
+        if (localStorage.getItem("jwt") !== undefined) {
+            config['headers']['Authorization'] = 'Bearer ' + localStorage.getItem("jwt")
+        }
+        axios({
+            method: 'delete',
+            url: 'api/v1/movies/'+id,
+            //params: {'id': id},
+            headers: {'Authorization': 'Bearer ' + localStorage.getItem("jwt")}
+          })
+          
+
+        //axios.delete( {baseURL: '/api/v1/movies/' + id, config } )
         .then(response => {
             const movies = this.state.movies.filter(
                 movie => movie.id !== id
@@ -58,12 +79,18 @@ class MoviesList extends Component {
     }
 
     editMovie(id, title, description) {
-        axios.put( '/api/v1/movies/' + id, { 
+        var config = {
+            headers: {}
+        }
+        if (localStorage.getItem("jwt") !== undefined) {
+            config['headers']['Authorization'] = 'Bearer ' + localStorage.getItem("jwt")
+        }
+        axios.put( 'api/v1/movies/' + id, { 
             movie: {
                 title, 
                 description
-            } 
-        })
+            }
+        }, config)
         .then(response => {
             console.log(response);
             const movies = this.state.movies.map(movie => (movie.id === id ? Object.assign({}, movie, {id, title, description}) : movie))
@@ -87,11 +114,16 @@ class MoviesList extends Component {
                                     editMovie={this.editMovie}
                         />)
                     } else {
+                        let user = this.props.currentUser
+                        let allow_editing = parseInt(movie.user_id) === parseInt(user.id)
+                        console.log(allow_editing)
+                        console.log('dddddd')
                         return (<MovieDetails 
                                     movie={movie} 
                                     key={movie.id} 
                                     onRemoveMovie={this.removeMovie}
                                     editingMovie={this.editingMovie}
+                                    allow_editing={allow_editing}
                         />)
                     }
                 })}

@@ -5,6 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Movie.delete_all
+Category.delete_all
+User.delete_all
+
 action_id = Category.create(name: "Action").id
 drama_id = Category.create(name: "Drama").id
 crime_id = Category.create(name: "Crime").id
@@ -21,3 +26,19 @@ Movie.create(title:"Spirited Away", description:"During her family's move to the
 Movie.create(title:"Interstellar", description:"A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.", category_id: drama_id)
 Movie.create(title:"The Pianist", description:"A Polish Jewish musician struggles to survive the destruction of the Warsaw ghetto of World War II.", category_id: drama_id)
 Movie.create(title:"Terminator 2", description:"A cyborg, identical to the one who failed to kill Sarah Connor, must now protect her teenage son, John Connor, from a more advanced and powerful cyborg.", category_id: action_id)
+
+user1 = User.new
+user1.email = 'user1@moviedb.com'
+user1.password = 'ZAnK}VLd7)U9AweB'
+user1.password_confirmation = 'ZAnK}VLd7)U9AweB'
+user1.save
+
+guest = User.new
+guest.email = 'guest@moviedb.com'
+guest.password = '{z4nYbT{2@Ha~:LS'
+guest.password_confirmation = '{z4nYbT{2@Ha~:LS'
+if guest.save
+    puts 'success'
+else
+    puts guest.errors.details
+end

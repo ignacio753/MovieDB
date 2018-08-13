@@ -1,5 +1,6 @@
 module Api::V1
   class MoviesController < ApplicationController
+    before_action :authenticate_user, only: [:create, :update, :destroy]
     before_action :set_movie, only: [:show, :update, :destroy]
 
     # GET /movies
@@ -17,7 +18,8 @@ module Api::V1
     # POST /movies
     def create
       @movie = Movie.new(movie_params)
-      @movie.category_id=2
+      @movie.category_id=Category.first.id
+      @movie.created_by=current_user.id
 
       if @movie.save
         render json: @movie, status: :created
