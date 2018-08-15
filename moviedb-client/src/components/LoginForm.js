@@ -32,27 +32,27 @@ class LoginForm extends Component {
         return <LogoutForm currentUser={user} />
       }
       return (
-      <div className="login-form">
-        <form onSubmit={this.handleLogin}>
-          <label htmlFor="email">Email: </label>
-          <br />
+      <div>
+        <form onSubmit={this.handleLogin} className="form-inline my-2 my-lg-0">
+          
           <input  name="email"
                   id="email"
                   type="email"
                   placeholder="Email..."
                   value={this.state.email}
-                  onChange={this.handleChange} />
-          <br /><br />
-          <label htmlFor="password">Password:</label>
-          <br />
+                  onChange={this.handleChange}
+                  className="form-control mr-sm-2 log" />
+          
+          
           <input  name="password"
                   id="password"
                   type="password"
                   placeholder="Password..."
                   value={this.state.password}
-                  onChange={this.handleChange} />
-          <br />
-          <button>
+                  onChange={this.handleChange}
+                  className="form-control mr-sm-2 log" />
+          
+          <button class="btn btn-primary log">
             Login
           </button>                  
         </form>

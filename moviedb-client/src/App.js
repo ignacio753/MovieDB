@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import axios from 'axios';
 import './App.css';
+import Nav from './components/Nav';
 import MoviesList from './components/MoviesList';
 import LoginForm from './components/LoginForm';
 
@@ -49,10 +50,7 @@ class App extends Component {
     console.log(this.state.currentUser)
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Movies Db</h1>
-          <LoginForm currentUser={this.state.currentUser} onLogin={this.login} />
-        </header>
+        <Nav currentUser={this.state.currentUser} login={this.login} />
         <MoviesList currentUser={this.state.currentUser} />
       </div>
     );

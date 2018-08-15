@@ -20,7 +20,6 @@ class MoviesList extends Component {
     componentDidMount() {
         axios.get('api/v1/movies.json')
         .then(response => {
-            console.log(response)
             this.setState({
                 movies: response.data
             })
@@ -38,7 +37,6 @@ class MoviesList extends Component {
         let data = { movie: {title, description}}
         axios.post( 'api/v1/movies', data, config)
         .then(response => {
-            console.log(response)
             const movies = [ ...this.state.movies, response.data ]
             this.setState({movies})
         })
@@ -92,7 +90,6 @@ class MoviesList extends Component {
             }
         }, config)
         .then(response => {
-            console.log(response);
             const movies = this.state.movies.map(movie => (movie.id === id ? Object.assign({}, movie, {id, title, description}) : movie))
 
             this.setState(() => ({
@@ -105,7 +102,10 @@ class MoviesList extends Component {
 
     render() {
         return (
-            <div className="lists-container">
+            <div>
+            <h3 className="text-center">Movies</h3>
+            <hr/>
+
                 {this.state.movies.map( movie => {
                     if ( this.state.editingMovieId === movie.id ) {
                         return (<EditMovieForm 
@@ -116,8 +116,6 @@ class MoviesList extends Component {
                     } else {
                         let user = this.props.currentUser
                         let allow_editing = parseInt(movie.user_id) === parseInt(user.id)
-                        console.log(allow_editing)
-                        console.log('dddddd')
                         return (<MovieDetails 
                                     movie={movie} 
                                     key={movie.id} 
@@ -127,7 +125,9 @@ class MoviesList extends Component {
                         />)
                     }
                 })}
+                {this.props.currentUser.id !== 0 &&
                 <NewMovieForm onNewMovie={this.addNewMovie} />
+                }
             </div>
         )
     }

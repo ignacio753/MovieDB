@@ -6,15 +6,10 @@ class LogoutForm extends Component {
 
   render(){
     return(
-      <div className="logout-form">
-        <form>
-          <h3>Welcome back: </h3>
-          <p>{this.props.currentUser.email}</p>
-          <button>
-            Logout
-          </button>                  
-        </form>
-      </div>
+      <form className="form-inline my-2 my-lg-0">
+        <li class="nav-item inline log"><p class="navbar-text">Welcome back: {this.props.currentUser.email}</p></li>
+        <li class="nav-item inline log"><button className="btn btn-link log my-2 my-sm-0">Log out </button></li>
+      </form>
     )
   }
 }

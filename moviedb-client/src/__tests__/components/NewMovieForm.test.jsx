@@ -13,7 +13,7 @@ describe('NewMovieForm', () => {
     describe('render', () => {
         it('should render the new movie button', () => {
             const form = shallow(<NewMovieForm />);
-            const addMovie = <button>Add Movie</button>;
+            const addMovie = 'Add';
 
             expect(form.contains(addMovie)).toEqual(true);
         });

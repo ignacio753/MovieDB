@@ -21,18 +21,32 @@ class EditMovieForm extends Component {
     render(){
         return(
             <form onSubmit={this.handleSubmit}>
-            <input  name="title"
-                    type="text"
-                    placeholder="Title..."
-                    value={this.state.title}
-                    onChange={this.handleChange} />
-            <input  name="description"
-                    type="text"
-                    placeholder="Description..."
-                    value={this.state.description}
-                    onChange={this.handleChange} />
-            <button>Update Movie</button>
-        </form>
+                <div className="col-sm-6">
+                    <div className="panel panel-danger">
+                        <div className="panel-heading">
+                            <h3 className="panel-title"><span className="btn">
+                            <input  name="title"
+                                    type="text"
+                                    placeholder="Title..."
+                                    value={this.state.title}
+                                    onChange={this.handleChange} /></span></h3>
+                        </div>
+                        <div className="panel-body">
+                            <p> <textarea   name="description"
+                                            rows="2"
+                                            cols="70"
+                                            type="text"
+                                            placeholder="Description..."
+                                            value={this.state.description}
+                                            onChange={this.handleChange} /> </p>
+                            <div>
+                                <button className="log btn btn-primary btn-sm mr-5">Update</button>
+                                <button className="log btn btn-secondary btn-sm mr-5">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         )
     }
 }
