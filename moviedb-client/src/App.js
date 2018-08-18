@@ -46,7 +46,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('bbbbbbbbb')
     console.log(this.state.currentUser)
     return (
       <div className="App">

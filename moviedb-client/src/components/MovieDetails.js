@@ -11,10 +11,10 @@ class MovieDetails extends React.Component {
     render() {
         let movie = this.props.movie
         return(
-            <div className="col-sm-6" key={movie.id}>
+            <div className="col-sm-12" key={movie.id}>
                 <div className="panel panel-danger">
                     <div className="panel-heading">
-                        <h3 className="panel-title"><span className="btn">{ movie.title }</span></h3>
+                        <h3 className="panel-title"><span>{ movie.title }</span></h3>
                     </div>
                     <div className="panel-body">
                         <p> { movie.description } </p>

@@ -98,15 +98,15 @@ class MoviesList extends Component {
             }))
         })
         .catch(error => console.log(error));
-    }    
-
+    }   
+    
     render() {
         return (
-            <div>
+            <div className="container">
             <h3 className="text-center">Movies</h3>
             <hr/>
-
-                {this.state.movies.map( movie => {
+                <div class="row">
+                {this.state.movies.map( (movie) => {
                     if ( this.state.editingMovieId === movie.id ) {
                         return (<EditMovieForm 
                                     movie={movie}
@@ -128,6 +128,7 @@ class MoviesList extends Component {
                 {this.props.currentUser.id !== 0 &&
                 <NewMovieForm onNewMovie={this.addNewMovie} />
                 }
+                </div>
             </div>
         )
     }
