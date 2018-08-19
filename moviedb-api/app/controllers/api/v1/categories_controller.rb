@@ -1,5 +1,10 @@
 module Api::V1
   class CategoriesController < ApplicationController
-    before_action :authenticate_user
+
+    # GET /categories
+    def index
+      @categories = Category.all
+      render json: @categories
+    end
   end
 end

@@ -4,12 +4,21 @@ required:
   - title
   - description
   - user_id
+  - category_id
+  - created_at
+  - updated_at
 properties:
   id:
-    type: [integer]
+    type: integer
   title:
     type: string
   description:
-    type: [string]
+    type: string]
   user_id:
-    type: [integer]
+    type: integer
+  category_id:
+      type: integer
+  created_at:
+    type: string
+  updated_at:
+    type: string  

@@ -39,6 +39,9 @@ group :development, :test, :cucumber do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
+
+  # gem for JSON schema testing
+  gem 'json-schema', '~> 2.6.1'  
 end
 
 group :development do
