@@ -1,6 +1,7 @@
 # MovieDB
 
 This is the API and client application for the MovieDB site.
+The MovieDB site allows registered users to login, create, edit and delete a movie database for general users view.
 
 ## Technology
 
