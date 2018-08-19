@@ -52,7 +52,7 @@ class LoginForm extends Component {
                   onChange={this.handleChange}
                   className="form-control mr-sm-2 log" />
           
-          <button class="btn btn-primary log">
+          <button className="btn btn-primary log">
             Login
           </button>                  
         </form>

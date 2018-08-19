@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-//const MovieDetails = ({movie, onRemoveMovie=f=>f, editingMovie=f=>f}) =>
 
-class MovieDetails extends React.Component {
+class MovieDetails extends Component {
     constructor(props) {
         super(props)
         this.onRemoveMovie = this.props.onRemoveMovie.bind(this)

@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import axios from 'axios';
 import './App.css';
 import Nav from './components/Nav';
 import MoviesList from './components/MoviesList';
-import LoginForm from './components/LoginForm';
+import * as constants from './utils/constants';
+import { userLogin } from './utils/auth';
+
 
 class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentUser: {
-        id: 0
-      }
+      currentUser: constants.NO_USER
     }
     this.login = this.login.bind(this)
   }
 
   login (email, password) {
-    let data = {
+    userLogin(email, password).then((user) => {
+      this.setState({
+        currentUser: user
+      })
+    })
+    /*let data = {
       auth: {
         email: email,
         password: password
@@ -42,11 +45,10 @@ class App extends Component {
           })
       })
     })
-    .catch(error => console.log(error))
+    .catch(error => console.log(error))*/
   }
 
   render() {
-    console.log(this.state.currentUser)
     return (
       <div className="App">
         <Nav currentUser={this.state.currentUser} login={this.login} />

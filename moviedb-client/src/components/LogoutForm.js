@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 class LogoutForm extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render(){
     return(
       <form className="form-inline my-2 my-lg-0">

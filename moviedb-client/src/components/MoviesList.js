@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import MovieDetails from './MovieDetails';
 import NewMovieForm from './NewMovieForm';
 import EditMovieForm from './EditMovieForm';
+import { getMovieData, addMovie, removeMovie, editMovie } from '../utils/movie-api';
 
 class MoviesList extends Component {
     constructor(props){
@@ -18,56 +18,25 @@ class MoviesList extends Component {
     }
 
     componentDidMount() {
-        axios.get('api/v1/movies.json')
-        .then(response => {
-            this.setState({
-                movies: response.data
-            })
-        })
-        .catch(error => console.log(error))
+        getMovieData().then((movies) => {
+            this.setState({ movies });
+        });
     }
 
     addNewMovie(title, description) {
-        var config = {
-            headers: {}
-        }
-        if (localStorage.getItem("jwt") !== undefined) {
-            config['headers']['Authorization'] = 'Bearer ' + localStorage.getItem("jwt")
-        }
-        let data = { movie: {title, description}}
-        axios.post( 'api/v1/movies', data, config)
-        .then(response => {
-            const movies = [ ...this.state.movies, response.data ]
+        addMovie(title, description).then((newMovie) => {
+            const movies = [ ...this.state.movies, newMovie ]
             this.setState({movies})
-        })
-        .catch(error => {
-            console.log(error)
         })
     }
 
     removeMovie(id) {
-        var config = {
-            headers: {}
-        }
-        if (localStorage.getItem("jwt") !== undefined) {
-            config['headers']['Authorization'] = 'Bearer ' + localStorage.getItem("jwt")
-        }
-        axios({
-            method: 'delete',
-            url: 'api/v1/movies/'+id,
-            //params: {'id': id},
-            headers: {'Authorization': 'Bearer ' + localStorage.getItem("jwt")}
-          })
-          
-
-        //axios.delete( {baseURL: '/api/v1/movies/' + id, config } )
-        .then(response => {
+        removeMovie(id).then((id) => {
             const movies = this.state.movies.filter(
                 movie => movie.id !== id
             )
             this.setState({movies})
         })
-        .catch(error => console.log(error))
     }
 
     editingMovie(id) {
@@ -77,19 +46,7 @@ class MoviesList extends Component {
     }
 
     editMovie(id, title, description) {
-        var config = {
-            headers: {}
-        }
-        if (localStorage.getItem("jwt") !== undefined) {
-            config['headers']['Authorization'] = 'Bearer ' + localStorage.getItem("jwt")
-        }
-        axios.put( 'api/v1/movies/' + id, { 
-            movie: {
-                title, 
-                description
-            }
-        }, config)
-        .then(response => {
+        editMovie(id, title, description).then((id) => {
             const movies = this.state.movies.map(movie => (movie.id === id ? Object.assign({}, movie, {id, title, description}) : movie))
 
             this.setState(() => ({
@@ -97,7 +54,6 @@ class MoviesList extends Component {
                 editingMovieId: null
             }))
         })
-        .catch(error => console.log(error));
     }   
     
     render() {
@@ -105,7 +61,7 @@ class MoviesList extends Component {
             <div className="container">
             <h3 className="text-center">Movies</h3>
             <hr/>
-                <div class="row">
+                <div className="row">
                 {this.state.movies.map( (movie) => {
                     if ( this.state.editingMovieId === movie.id ) {
                         return (<EditMovieForm 
@@ -126,7 +82,7 @@ class MoviesList extends Component {
                     }
                 })}
                 {this.props.currentUser.id !== 0 &&
-                <NewMovieForm onNewMovie={this.addNewMovie} />
+                    <NewMovieForm onNewMovie={this.addNewMovie} />
                 }
                 </div>
             </div>

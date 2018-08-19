@@ -21,7 +21,7 @@ class EditMovieForm extends Component {
     render(){
         return(
             <form onSubmit={this.handleSubmit}>
-                <div className="col-sm-6">
+                <div className="col-sm-12">
                     <div className="panel panel-danger">
                         <div className="panel-heading">
                             <h3 className="panel-title"><span className="btn">
