@@ -57,6 +57,7 @@ class MoviesList extends Component {
     }   
     
     render() {
+        // Loop the movies list, if a movie is in editing mode, display the edit form
         return (
             <div className="container">
             <h3 className="text-center">Movies</h3>

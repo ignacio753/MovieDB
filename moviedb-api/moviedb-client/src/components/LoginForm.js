@@ -27,6 +27,7 @@ class LoginForm extends Component {
   }
 
   render(){
+    // Check if the user is logged-in to display logout or login forms
     let user = this.props.currentUser
       if(user.id !== 0) {
         return <LogoutForm currentUser={user} />

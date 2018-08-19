@@ -1,6 +1,8 @@
 import axios from 'axios';
 import * as constants from './constants';
 
+// Checks if the JWT token exists in the local storage
+// Creates a Auth Header for subsequent requests
 function getAuthConfig() {
     var config = {
         headers: {}
@@ -12,6 +14,8 @@ function getAuthConfig() {
     return config;
 }
 
+// Sends and auth request
+// Once a JWT token is obtained the current user info is requested
 function userLogin(email, password) {
     let data = {
         auth: {
@@ -27,6 +31,7 @@ function userLogin(email, password) {
     .catch(error => console.log(error))
 }
 
+// Returns the user data (email and user id) for the current JWT token
 function getCurrentUser() {
     let config = getAuthConfig();
     return axios.get(constants.CURRENT_USER_URL, config)

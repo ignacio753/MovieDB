@@ -2,6 +2,7 @@ import axios from 'axios';
 import * as constants from './constants';
 import { getAuthConfig } from './auth'
 
+// CRUD API for movies data
 
 function getMovieData() {
   const url = constants.BASE_URL;
