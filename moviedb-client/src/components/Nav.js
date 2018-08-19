@@ -10,14 +10,12 @@ class Nav extends Component {
                 <div className="navbar-brand">Movies Db</div>
             </div>
             <div className="col-4">
-            <ul className="nav navbar-nav navbar-right mr-auto">
-            <LoginForm currentUser={this.props.currentUser} onLogin={this.props.login} />
-            
-            </ul>
+                <ul className="nav navbar-nav navbar-right mr-auto">
+                    <LoginForm currentUser={this.props.currentUser} onLogin={this.props.login} />
+                </ul>
             </div>
         </nav>
         );
     }
 }
-//<LoginForm currentUser={this.props.currentUser} onLogin={this.props.login} />
 export default Nav;

@@ -21,31 +21,6 @@ class App extends Component {
         currentUser: user
       })
     })
-    /*let data = {
-      auth: {
-        email: email,
-        password: password
-      }
-    }    
-    axios.post('/api/v1/user_token/', data)
-    .then(response => {
-      localStorage.setItem("jwt", response.data.jwt)
-    })
-    .then(()=> {
-      var config = {
-        headers: {}
-      }
-      if (localStorage.getItem("jwt") !== undefined) {
-          config['headers']['Authorization'] = 'Bearer ' + localStorage.getItem("jwt")
-      }
-      return axios.get('api/v1/users/current', config)
-      .then(response => {
-          this.setState({
-              currentUser: response.data
-          })
-      })
-    })
-    .catch(error => console.log(error))*/
   }
 
   render() {

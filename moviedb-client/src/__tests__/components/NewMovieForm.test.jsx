@@ -5,8 +5,6 @@ import NewMovieForm from '../../components/NewMovieForm';
 
 describe('NewMovieForm', () => {
     it('renders without crashing', () => {
-        //const div = document.createElement('div');
-        //ReactDOM.render(<NewMovieForm/>, div);
         shallow(<NewMovieForm />);
     });
 
