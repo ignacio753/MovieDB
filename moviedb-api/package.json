@@ -1,0 +1,16 @@
+{
+  "name": "react-and-rails",
+  "version": "1.0.0",
+  "description": "Bundler for rails and api for deploy in Heroku",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "cd ../moviedb-client && npm install && npm run build && cd ../moviedb-api/",
+    "deploy": "cp -a ../moviedb-client/build/. public/",
+    "postinstall": "npm run build && npm run deploy && echo 'Client built'"
+  },
+  "author": "",
+  "license": "ISC"
+}
