@@ -7,8 +7,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "cd ../moviedb-client && npm install && npm run build && cd ../moviedb-api/",
-    "deploy": "cp -a ../moviedb-client/build/. public/",
+    "build": "cd moviedb-client && npm install && npm run build && cd ..",
+    "deploy": "cp -a moviedb-client/build/. public/",
     "postinstall": "npm run build && npm run deploy && echo 'Client built'"
   },
   "author": "",
