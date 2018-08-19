@@ -63,6 +63,9 @@ class MoviesList extends Component {
             <h3 className="text-center">Movies</h3>
             <hr/>
                 <div className="row">
+                {this.props.currentUser.id !== 0 &&
+                    <NewMovieForm onNewMovie={this.addNewMovie} />
+                }
                 {this.state.movies.map( (movie) => {
                     if ( this.state.editingMovieId === movie.id ) {
                         return (<EditMovieForm 
@@ -82,9 +85,6 @@ class MoviesList extends Component {
                         />)
                     }
                 })}
-                {this.props.currentUser.id !== 0 &&
-                    <NewMovieForm onNewMovie={this.addNewMovie} />
-                }
                 </div>
             </div>
         )
